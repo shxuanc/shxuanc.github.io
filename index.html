@@ -1,66 +1,357 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>程世轩 | 个人主页</title>
-    <style>
-        * {
-            margin:0;
-            padding:0;
-            box-sizing: border-box;
-        }
-        body {
-            font-family: "Microsoft Yahei", sans-serif;
-            max-width:720px;
-            margin:60px auto;
-            padding:0 24px;
-            line-height:1.7;
-            color:#222;
-        }
-        h1 {
-            font-size:32px;
-            margin-bottom:8px;
-        }
-        .subtitle {
-            color:#555;
-            font-size:18px;
-            margin-bottom:24px;
-        }
-        hr {
-            margin:30px 0;
-            border:0;
-            border-top:1px solid #ddd;
-        }
-        h3 {
-            margin:20px 0 10px;
-        }
-        ul {
-            padding-left:22px;
-        }
-        a {
-            color:#2563eb;
-            text-decoration:none;
-        }
-        a:hover {
-            text-decoration:underline;
-        }
-    </style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>程世轩</title>
+  <style>
+    * { margin: 0; padding: 0; box-sizing: border-box; }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
+                   "Helvetica Neue", Arial, "Noto Sans SC", sans-serif;
+      line-height: 1.65;
+      color: #1a1a1a;
+      background-color: #f0f0f0;
+      min-height: 100vh;
+      padding: 2.5rem 2rem 2rem;
+    }
+
+    /* ---------- 卡片：加框 ---------- */
+    .container {
+      max-width: 860px;
+      margin: 0 auto;
+      background-color: #fff;
+      border: 1px solid #e0e0e0;
+      border-radius: 12px;
+      padding: 1.75rem 2rem;
+      box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+    }
+
+    /* ---------- 头部 ---------- */
+    header {
+      display: flex;
+      align-items: center;
+      gap: 1.25rem;
+      margin-bottom: 1.5rem;
+      padding-bottom: 1.5rem;
+      border-bottom: 1px solid #eee;
+    }
+
+    .avatar {
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      flex-shrink: 0;
+      object-fit: cover;
+      background-color: #eee;
+      display: block;
+    }
+
+    .header-text h1 {
+      font-size: 1.5rem;
+      font-weight: 600;
+      letter-spacing: -0.02em;
+      color: #111;
+      line-height: 1.3;
+    }
+
+    .subtitle {
+      font-size: 0.88rem;
+      color: #999;
+      margin-top: 0.1rem;
+    }
+
+    /* ---------- 区块 ---------- */
+    section {
+      margin-bottom: 1.5rem;
+    }
+
+    section:last-of-type {
+      margin-bottom: 0;
+    }
+
+    .section-title {
+      font-size: 0.72rem;
+      font-weight: 600;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: #aaa;
+      margin-bottom: 0.6rem;
+    }
+
+    /* ---------- 关于我 ---------- */
+    .about p {
+      font-size: 0.92rem;
+      color: #444;
+      line-height: 1.75;
+    }
+
+    /* ---------- 教育经历 ---------- */
+    .edu-item {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      padding: 0.3rem 0;
+    }
+
+    .edu-school {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    .edu-major {
+      font-size: 0.88rem;
+      color: #777;
+    }
+
+    /* ---------- 联系方式：两列 ---------- */
+    .info {
+      list-style: none;
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.5rem 1.5rem;
+    }
+
+    .info li {
+      display: flex;
+      align-items: baseline;
+      font-size: 0.92rem;
+      padding: 0.3rem 0;
+    }
+
+    .info li span {
+      flex: 0 0 4.5em;
+      color: #999;
+      font-size: 0.85rem;
+    }
+
+    .info a {
+      color: #1a1a1a;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+      transition: border-color 0.2s;
+    }
+
+    .info a:hover {
+      border-color: #1a1a1a;
+    }
+
+    /* ---------- 技能 ---------- */
+    .skills {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.4rem;
+    }
+
+    .skill-tag {
+      font-size: 0.8rem;
+      color: #444;
+      background-color: #f4f4f4;
+      border-radius: 6px;
+      padding: 0.25rem 0.65rem;
+      transition: background-color 0.2s;
+    }
+
+    .skill-tag:hover {
+      background-color: #e8e8e8;
+    }
+
+    /* ---------- 项目经历 ---------- */
+    .project-item {
+      padding: 0.6rem 0;
+      border-bottom: 1px solid #f2f2f2;
+    }
+
+    .project-item:first-child {
+      padding-top: 0;
+    }
+
+    .project-item:last-child {
+      border-bottom: none;
+      padding-bottom: 0;
+    }
+
+    .project-header {
+      display: flex;
+      justify-content: space-between;
+      align-items: baseline;
+      gap: 1rem;
+      margin-bottom: 0.1rem;
+    }
+
+    .project-name {
+      font-size: 0.95rem;
+      font-weight: 500;
+      color: #1a1a1a;
+    }
+
+    .project-link {
+      font-size: 0.78rem;
+      color: #999;
+      text-decoration: none;
+      border-bottom: 1px solid #ddd;
+      transition: color 0.2s, border-color 0.2s;
+    }
+
+    .project-link:hover {
+      color: #111;
+      border-color: #111;
+    }
+
+    .project-desc {
+      font-size: 0.85rem;
+      color: #777;
+      line-height: 1.55;
+    }
+
+    /* ---------- GitHub 统计 ---------- */
+    .github-stats {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 0.6rem;
+    }
+
+    .github-stats img {
+      width: 100%;
+      border-radius: 8px;
+      border: 1px solid #eee;
+    }
+
+    /* ---------- 页脚 ---------- */
+    footer {
+      max-width: 860px;
+      margin: 1rem auto 0;
+      font-size: 0.78rem;
+      color: #bbb;
+      text-align: center;
+    }
+
+    /* ---------- 响应式 ---------- */
+    @media (max-width: 640px) {
+      body {
+        padding: 1.5rem 1rem 1rem;
+      }
+
+      .container {
+        padding: 1.5rem 1.25rem;
+      }
+
+      header {
+        gap: 1rem;
+      }
+
+      .avatar {
+        width: 56px;
+        height: 56px;
+      }
+
+      .header-text h1 {
+        font-size: 1.35rem;
+      }
+
+      .info {
+        grid-template-columns: 1fr;
+      }
+
+      .github-stats {
+        grid-template-columns: 1fr;
+      }
+
+      .edu-item,
+      .project-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 0.1rem;
+      }
+    }
+  </style>
 </head>
 <body>
-    <h1>程世轩</h1>
-    <div class="subtitle">人工智能 · 本科</div>
-    <hr>
-    <h3>📬 联系方式</h3>
-    <ul>
-        <li>邮箱：3058778192@qq.com</li>
-        <li>GitHub：<a href="https://github.com/shxuanc" target="_blank">github.com/shxuanc</a></li>
-    </ul>
 
-    <h3>👨‍🎓 个人简介</h3>
-    <p>人工智能专业本科生。</p>
+  <div class="container">
 
-    <h3>📄 简历下载</h3>
-    <p><a href="./resume.pdf">点击下载我的简历PDF</a></p>
+    <header>
+      <img class="avatar"
+           src="https://github.com/shxuanc.png"
+           alt="程世轩的头像">
+      <div class="header-text">
+        <h1>程世轩</h1>
+        <p class="subtitle">淮安大学 · 人工智能</p>
+      </div>
+    </header>
+
+    <section class="about">
+      <h2 class="section-title">关于我</h2>
+      <p>淮安大学人工智能专业本科生，对机器学习与计算机视觉方向感兴趣，正在持续学习和探索中。</p>
+    </section>
+
+    <section class="education">
+      <h2 class="section-title">教育经历</h2>
+      <div class="edu-item">
+        <span class="edu-school">淮安大学</span>
+        <span class="edu-major">人工智能 · 本科</span>
+      </div>
+    </section>
+
+    <section class="contact">
+      <h2 class="section-title">联系方式</h2>
+      <ul class="info">
+        <li><span>邮箱</span><a href="mailto:3058778192@qq.com">3058778192@qq.com</a></li>
+        <li><span>GitHub</span><a href="https://github.com/shxuanc" target="_blank" rel="noopener">github.com/shxuanc</a></li>
+      </ul>
+    </section>
+
+    <section class="skills-section">
+      <h2 class="section-title">技能</h2>
+      <div class="skills">
+        <span class="skill-tag">Python</span>
+        <span class="skill-tag">PyTorch</span>
+        <span class="skill-tag">C++</span>
+        <span class="skill-tag">Git</span>
+        <span class="skill-tag">Linux</span>
+        <span class="skill-tag">LaTeX</span>
+      </div>
+    </section>
+
+    <section class="projects">
+      <h2 class="section-title">项目经历</h2>
+
+      <div class="project-item">
+        <div class="project-header">
+          <span class="project-name">hauthesis</span>
+          <a class="project-link" href="https://github.com/shxuanc/hauthesis" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p class="project-desc">淮安大学本科毕业设计（论文）LaTeX 模板。</p>
+      </div>
+
+      <div class="project-item">
+        <div class="project-header">
+          <span class="project-name">docker-tar-builder</span>
+          <a class="project-link" href="https://github.com/shxuanc/docker-tar-builder" target="_blank" rel="noopener">GitHub</a>
+        </div>
+        <p class="project-desc">用于构建 Docker 镜像 tar 包的小工具。</p>
+      </div>
+
+    </section>
+
+    <section class="github">
+      <h2 class="section-title">GitHub</h2>
+      <div class="github-stats">
+        <img src="https://github-readme-stats.vercel.app/api?username=shxuanc&show_icons=true&hide_border=true&theme=graywhite" alt="GitHub Stats">
+        <img src="https://github-readme-stats.vercel.app/api/top-langs/?username=shxuanc&layout=compact&hide_border=true&theme=graywhite" alt="Top Languages">
+      </div>
+    </section>
+
+  </div>
+
+  <footer>
+    <p>&copy; 2026 程世轩</p>
+  </footer>
+
 </body>
 </html>
